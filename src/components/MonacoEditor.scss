@@ -1,0 +1,23 @@
+.monaco-editor {
+	// Remove navbar height
+	height: calc(100vh - 60px);
+	width: 100%;
+	padding-top: 2px;
+}
+.overlay {
+	position: absolute;
+	width: var(--overlay-width);
+	height: var(--overlay-height);
+
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+body {
+	--overlay-width: 0;
+	--overlay-height: 0;
+}
+body.sidebar-open {
+	--overlay-width: 100vw;
+	--overlay-height: 100vh;
+}

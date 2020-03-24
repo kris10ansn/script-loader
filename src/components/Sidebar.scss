@@ -1,0 +1,9 @@
+.Sidebar {
+	width: var(--sidebar-width);
+	height: 100vh;
+	background: #222;
+}
+
+body.sidebar-open {
+	--sidebar-width: 55vw;
+}

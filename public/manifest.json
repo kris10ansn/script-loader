@@ -1,25 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"name": "Script Loader",
+	"version": "0.0.2",
+	"description": "",
+	"content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-3BgvBs9nJj8r1emVnXXD2Vz3Q/I/vSwD2KvWTORWLf8=' 'sha256-jUHtu82IhjkkarC+jnylFxDt98nwSPrzkTFY3wYpcLU=';",
+
+	"browser_action": {
+		"default_popup": "index.html"
+	},
+	"manifest_version": 2
 }

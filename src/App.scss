@@ -1,0 +1,15 @@
+.App {
+	height: 100vh;
+	min-width: 100vw;
+	display: flex;
+	flex-direction: row;
+
+	div.main {
+		height: 100vh;
+		width: 100vw;
+		position: absolute;
+		left: var(--sidebar-width);
+
+		transition: left 0.5s ease;
+	}
+}
