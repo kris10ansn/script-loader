@@ -7,6 +7,14 @@ export default function MonacoEditor() {
 		document.body.classList.toggle("sidebar-open");
 	};
 
+	/** @param {KeyboardEvent} [event] */
+	const keyDown = event => {
+		if (event.ctrlKey && event.key === "s") {
+			event.preventDefault();
+			console.log("Todo: Save");
+		}
+	};
+
 	monaco.config({
 		urls: {
 			monacoLoader: "./vs/loader.js",
@@ -14,14 +22,14 @@ export default function MonacoEditor() {
 		}
 	});
 	return (
-		<div className="monaco-editor">
+		<div className="monaco-editor" onKeyDown={keyDown}>
 			<Editor
 				height="100%"
 				language="javascript"
 				theme="vs-dark"
 				value={'console.log("Hello, world!");\n'}
 				options={{
-					fontSize: 22,
+					fontSize: 20,
 					minimap: {
 						enabled: false
 					}

@@ -1,9 +1,22 @@
+$expanded: 55vw;
+
 .Sidebar {
-	width: var(--sidebar-width);
-	height: 100vh;
+	width: $expanded;
+	height: var(--window-height);
 	background: #222;
+
+	position: absolute;
+	left: var(--sidebar-left);
+
+	transition: all 0.3s ease;
+}
+
+body {
+	--sidebar-width: 0;
+	--sidebar-left: -#{$expanded};
 }
 
 body.sidebar-open {
-	--sidebar-width: 55vw;
+	--sidebar-width: #{$expanded};
+	--sidebar-left: 0;
 }

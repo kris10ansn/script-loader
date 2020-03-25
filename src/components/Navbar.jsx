@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar.scss";
 import grip from "./grip.svg";
+import play from "./play-button.svg";
 
 export default function Navbar() {
 	const toggleSidebar = () => {
@@ -25,6 +26,8 @@ export default function Navbar() {
 			</div>
 
 			<div className="buttons">
+				<img id="run" src={play} alt=">" />
+
 				<button className="save">Save</button>
 			</div>
 		</nav>

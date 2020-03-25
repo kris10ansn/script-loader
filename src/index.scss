@@ -9,10 +9,14 @@ body {
 	background-color: #222;
 	overflow: hidden;
 	font-family: "Sen", sans-serif;
-	width: 700px;
-	height: 600px;
+
+	--window-width: 700px;
+	--window-height: 700px;
+
+	width: var(--window-width);
+	height: var(--window-height);
 }
 
-body {
-	--sidebar-width: 0;
+button {
+	outline: none;
 }

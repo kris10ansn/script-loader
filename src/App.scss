@@ -1,8 +1,9 @@
 .App {
-	height: 100vh;
-	min-width: 100vw;
+	height: var(--window-height);
+	min-width: var(--window-width);
 	display: flex;
 	flex-direction: row;
+	overflow: hidden;
 
 	div.main {
 		height: 100vh;
@@ -10,6 +11,6 @@
 		position: absolute;
 		left: var(--sidebar-width);
 
-		transition: left 0.5s ease;
+		transition: left 0.3s ease;
 	}
 }
