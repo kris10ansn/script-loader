@@ -33,14 +33,15 @@ nav {
 		display: flex;
 		align-items: center;
 		margin: 0 20px;
-		justify-content: space-between;
-		width: 125px;
+
+		* {
+			margin-left: 25px;
+		}
 
 		img#run {
 			height: 50%;
 			cursor: pointer;
 		}
-
 		button {
 			background: rgb(81, 98, 255);
 			border: none;

@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Editor, { monaco } from "@monaco-editor/react";
 import "./MonacoEditor.scss";
 
-export default function MonacoEditor() {
-	const toggleSidebar = () => {
-		document.body.classList.toggle("sidebar-open");
+const toggleSidebar = () => {
+	document.body.classList.toggle("sidebar-open");
+};
+
+export default function MonacoEditor({ currentCode, setCurrentCode }) {
+	const [ready, setReady] = useState(false);
+
+	const save = ref => {
+		const code = ref.current.getValue();
+		setCurrentCode(code);
 	};
 
-	/** @param {KeyboardEvent} [event] */
-	const keyDown = event => {
-		if (event.ctrlKey && event.key === "s") {
-			event.preventDefault();
-			console.log("Todo: Save");
-		}
+	const editorDidMount = (_, ref) => {
+		setReady(true);
+		ref.current = ref;
+
+		save(ref);
+
+		ref.current.onDidChangeModelContent(() => save(ref));
 	};
 
 	monaco.config({
@@ -22,18 +30,19 @@ export default function MonacoEditor() {
 		}
 	});
 	return (
-		<div className="monaco-editor" onKeyDown={keyDown}>
+		<div className="monaco-editor">
 			<Editor
 				height="100%"
 				language="javascript"
 				theme="vs-dark"
-				value={'console.log("Hello, world!");\n'}
+				value={currentCode}
 				options={{
 					fontSize: 20,
 					minimap: {
 						enabled: false
 					}
 				}}
+				editorDidMount={editorDidMount}
 			></Editor>
 			<div className="overlay" onClick={toggleSidebar}></div>
 		</div>
