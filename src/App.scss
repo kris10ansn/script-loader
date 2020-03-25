@@ -6,8 +6,8 @@
 	overflow: hidden;
 
 	div.main {
-		height: 100vh;
-		width: 100vw;
+		height: var(--window-height);
+		width: var(--window-width);
 		position: absolute;
 		left: var(--sidebar-width);
 
