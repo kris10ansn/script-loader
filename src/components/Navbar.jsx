@@ -1,16 +1,23 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import "./Navbar.scss";
-import grip from "./grip.svg";
-import play from "./play.svg";
+import grip from "../assets/grip.svg";
+import play from "../assets/play.svg";
 
-export default function Navbar({ currentTitle, setCurrentTitle, run, save }) {
+export default function Navbar({
+	currentTitle,
+	setCurrentTitle,
+	run,
+	save,
+	saved
+}) {
+	const self = useRef();
+
 	const toggleSidebar = () => {
 		document.body.classList.toggle("sidebar-open");
 	};
 
 	const titleRef = useRef();
 	const updateTitle = () => {
-		console.log("updateTitle");
 		const newTitle = titleRef.current.textContent.trim().toLowerCase();
 
 		if (newTitle.length > 0) {
@@ -27,12 +34,13 @@ export default function Navbar({ currentTitle, setCurrentTitle, run, save }) {
 	const titleKeyDown = event => {
 		if (event.key === "Enter") {
 			titleRef.current.blur();
+			self.current.focus();
 			event.preventDefault();
 		}
 	};
 
 	return (
-		<nav>
+		<nav ref={self}>
 			<div className="left">
 				<div className="grip">
 					<img id="grip" onClick={toggleSidebar} src={grip} alt="::" />
@@ -45,6 +53,7 @@ export default function Navbar({ currentTitle, setCurrentTitle, run, save }) {
 					suppressContentEditableWarning={true}
 					onBlur={updateTitle}
 					onKeyDown={titleKeyDown}
+					style={{ fontStyle: !saved ? "italic" : "" }}
 				>
 					{currentTitle}
 				</h1>

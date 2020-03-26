@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Editor, { monaco } from "@monaco-editor/react";
 import "./MonacoEditor.scss";
 
@@ -6,21 +6,31 @@ const toggleSidebar = () => {
 	document.body.classList.toggle("sidebar-open");
 };
 
-export default function MonacoEditor({ currentCode, setCurrentCode }) {
+export default function MonacoEditor({
+	currentCode,
+	setCurrentCode,
+	setSaved
+}) {
 	const [ready, setReady] = useState(false);
 
-	const save = ref => {
+	const change = ref => {
 		const code = ref.current.getValue();
 		setCurrentCode(code);
+
+		setSaved(false);
 	};
 
 	const editorDidMount = (_, ref) => {
 		setReady(true);
 		ref.current = ref;
 
-		save(ref);
+		console.error(
+			"TODO: Prevent setSaved(false) on project change @ MonacoEditor.jsx"
+		);
 
-		ref.current.onDidChangeModelContent(() => save(ref));
+		change(ref);
+
+		ref.current.onDidChangeModelContent(() => change(ref));
 	};
 
 	monaco.config({

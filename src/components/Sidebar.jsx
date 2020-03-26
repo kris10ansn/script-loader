@@ -1,43 +1,78 @@
 import "./Sidebar.scss";
-import plus from "./plus.svg";
-import arrow from "./white-arrow.svg";
-import React, { useState, useEffect } from "react";
+import plus from "../assets/plus.svg";
+import arrow from "../assets/white-arrow.svg";
+import trash from "../assets/delete.svg";
+import React, { useEffect, useState } from "react";
 
-function Sidebar({ projects }) {
+function Sidebar({
+	projects,
+	changeProject,
+	newProject,
+	deleteProject,
+	updateProjects,
+	currentTitle
+}) {
+	const [updateValue, setUpdateValue] = useState(false);
+
+	const update = () => {
+		setUpdateValue(!updateValue);
+	};
+
 	const toggleSidebar = () => {
 		document.body.classList.toggle("sidebar-open");
 	};
 
-	const newProject = () => {
-		console.error("TODO: newProject() @ Sidebar.jsx");
+	const createProject = () => {
+		newProject();
 		toggleSidebar();
 	};
 
-	const createProjectOpener = name => {
-		// Could remove braces but won't because of readability
+	const projectOpener = name => {
 		return () => {
-			console.error("TODO: openProject() @ Sidebar.jsx");
-			console.error(`Open ${name}`);
+			changeProject(name);
 			toggleSidebar();
+		};
+	};
+
+	const projectDeleter = name => {
+		return () => {
+			deleteProject(name);
+			updateProjects();
+
+			update();
+
+			if (currentTitle === name) {
+				const firstProject = projects.keys().next().value;
+				changeProject(firstProject);
+			}
 		};
 	};
 
 	return (
 		<div className="Sidebar">
-			<div className="new-project" onClick={newProject}>
+			<div className="new-project" onClick={createProject}>
 				<img src={plus} alt="+" />
 				<h1>New Project</h1>
 			</div>
 
 			<div className="projects">
 				{Array.from(projects.keys()).map((title, index) => (
-					<div
-						className="project"
-						key={index}
-						onClick={createProjectOpener(title)}
-					>
-						<img src={arrow} alt=">" />
-						<h1>{title.toUpperCase()}</h1>
+					<div className="project" key={index}>
+						<div className="left" onClick={projectOpener(title)}>
+							<img src={arrow} alt=">" className="arrow" />
+							<h1>
+								{title.toUpperCase().substring(0, 13)}
+								{title.length > 13 ? "..." : ""}
+							</h1>
+						</div>
+						<div className="buttons">
+							<img
+								src={trash}
+								alt="delete"
+								onClick={projectDeleter(title)}
+								className="delete"
+							/>
+						</div>
 					</div>
 				))}
 			</div>

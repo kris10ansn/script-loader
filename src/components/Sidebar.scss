@@ -1,4 +1,4 @@
-$expanded: 55vw;
+$expanded: 65vw;
 
 .Sidebar {
 	width: $expanded;
@@ -30,7 +30,6 @@ $expanded: 55vw;
 		display: flex;
 		align-items: center;
 		height: 60px;
-		cursor: pointer;
 
 		transition: background 0.2s ease;
 
@@ -50,18 +49,55 @@ $expanded: 55vw;
 	}
 
 	div.project {
-		img {
+		display: flex;
+		justify-content: space-between;
+
+		div.left {
+			display: flex;
+			align-items: center;
+			flex-grow: 1;
+			cursor: pointer;
+		}
+
+		img.arrow {
 			height: 1rem;
 			margin: 0 24px;
 			transition: transform 0.3s ease;
 		}
 
-		&:hover img {
+		&:hover img.arrow {
 			transform: translateX(7px);
+		}
+
+		div.buttons {
+			display: flex;
+			align-items: center;
+
+			opacity: 0;
+
+			transition: all 0.2s ease-in-out;
+
+			transform: translateY(4px);
+
+			img {
+				cursor: pointer;
+				margin: 0 15px;
+			}
+
+			img.delete {
+				height: 36px;
+			}
+		}
+
+		&:hover div.buttons {
+			opacity: 1;
+			transform: translateY(0);
 		}
 	}
 
 	div.new-project {
+		cursor: pointer;
+
 		img {
 			transition: transform 0.5s ease;
 		}

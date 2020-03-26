@@ -10,43 +10,44 @@ function App() {
 		localStorage.getItem("projects") || "[]"
 	);
 
+	const [saved, setSaved] = useState(false);
 	const [currentTitle, setCurrentTitle] = useState("");
 	const [currentCode, setCurrentCode] = useState("");
 	const [projects, setProjects] = useState(new Map(savedProjectsArray));
-
-	useEffect(() => {
-		const title = generateDefaultTitle(projects);
-		const code = "alert(1);";
-
-		setCurrentCode(code);
-		setCurrentTitle(title);
-	}, []);
 
 	const updateProjects = () => {
 		setProjects(projects);
 	};
 
-	const save = () => {
-		console.log("save");
-		projects.set(currentTitle, currentCode);
-		updateProjects();
-
+	const store = () => {
 		const projectsArray = Array.from(projects.entries());
 		localStorage.setItem("projects", JSON.stringify(projectsArray));
 	};
 
-	const saved = () => {
-		return projects.get(currentTitle) !== undefined;
+	const save = () => {
+		projects.set(currentTitle, currentCode);
+		updateProjects();
+
+		store();
+
+		setSaved(true);
 	};
+
+	useEffect(() => {
+		console.log(saved);
+	}, [saved]);
 
 	const changeProject = name => {
 		const changeProject = () => {
 			setCurrentTitle(name);
 			setCurrentCode(projects.get(name));
+			setSaved(true);
 		};
 
-		if (!saved()) {
-			const doChange = window.confirm("Do you want to switch without saving?");
+		if (!saved) {
+			const doChange = window.confirm(
+				`Are you sure you want to close ${currentTitle}? You have unsaved changes!`
+			);
 			if (doChange) {
 				changeProject();
 			}
@@ -55,11 +56,30 @@ function App() {
 		}
 	};
 
+	const newProject = (override = false) => {
+		const create = () => {
+			const title = generateDefaultTitle(projects);
+			const code = 'alert("This is a new project!");';
+
+			setCurrentCode(code);
+			setCurrentTitle(title);
+			setSaved(false);
+		};
+
+		if (!override && !saved) {
+			const doCreate = window.confirm(
+				`Are you sure you want to close ${currentTitle}? You have unsaved changes!`
+			);
+			doCreate && create();
+		} else {
+			create();
+		}
+	};
+
 	const run = () => {
 		window.eval(currentCode);
 	};
 
-	/** @param {KeyboardEvent} [event] */
 	const keyDown = event => {
 		if (event.ctrlKey && event.key === "s") {
 			event.preventDefault();
@@ -67,21 +87,46 @@ function App() {
 		}
 	};
 
-	window.test = { changeProject };
+	useEffect(() => newProject(true), []);
+
+	const changeTitle = newTitle => {
+		if (saved) {
+			projects.delete(currentTitle);
+			projects.set(newTitle, currentCode);
+
+			updateProjects();
+		}
+		setCurrentTitle(newTitle);
+	};
+
+	const deleteProject = name => {
+		projects.delete(name);
+
+		store();
+	};
 
 	return (
 		<div className="App">
-			<Sidebar projects={projects}></Sidebar>
+			<Sidebar
+				projects={projects}
+				changeProject={changeProject}
+				newProject={newProject}
+				deleteProject={deleteProject}
+				updateProjects={updateProjects}
+				currentTitle={currentTitle}
+			></Sidebar>
 			<div className="main" onKeyDown={keyDown}>
 				<Navbar
 					currentTitle={currentTitle}
-					setCurrentTitle={setCurrentTitle}
+					setCurrentTitle={changeTitle}
 					run={run}
 					save={save}
+					saved={saved}
 				></Navbar>
 				<MonacoEditor
 					currentCode={currentCode}
 					setCurrentCode={setCurrentCode}
+					setSaved={setSaved}
 				></MonacoEditor>
 			</div>
 		</div>
