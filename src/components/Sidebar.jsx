@@ -42,8 +42,7 @@ function Sidebar({
 			update();
 
 			if (currentTitle === name) {
-				const firstProject = projects.keys().next().value;
-				changeProject(firstProject);
+				changeProject("", true);
 			}
 		};
 	};

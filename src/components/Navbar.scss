@@ -27,6 +27,8 @@ nav {
 			text-transform: uppercase;
 			font-size: 26px;
 
+			min-width: 20px;
+
 			white-space: nowrap;
 			overflow-x: hidden;
 			max-width: calc((var(--window-width) / 2) * 1);

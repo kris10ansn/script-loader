@@ -1,0 +1,28 @@
+[0326/233438.036:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.036:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.036:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.036:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.040:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.036:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.036:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.043:ERROR:exception_snapshot_win.cc(98)] thread ID 6860 not found in process
+[0326/233438.043:ERROR:exception_snapshot_win.cc(98)] thread ID 16344 not found in process
+[0326/233438.043:ERROR:exception_snapshot_win.cc(98)] thread ID 12868 not found in process
+[0326/233438.043:ERROR:exception_snapshot_win.cc(98)] thread ID 14412 not found in process
+[0326/233438.043:ERROR:exception_snapshot_win.cc(98)] thread ID 16908 not found in process
+[0326/233438.043:ERROR:exception_snapshot_win.cc(98)] thread ID 7756 not found in process
+[0326/233438.044:ERROR:exception_snapshot_win.cc(98)] thread ID 7508 not found in process
+[0326/233438.060:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.060:ERROR:exception_snapshot_win.cc(98)] thread ID 4400 not found in process
+[0326/233438.062:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.062:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.062:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.062:ERROR:exception_snapshot_win.cc(98)] thread ID 17180 not found in process
+[0326/233438.062:ERROR:exception_snapshot_win.cc(98)] thread ID 13196 not found in process
+[0326/233438.062:ERROR:exception_snapshot_win.cc(98)] thread ID 3616 not found in process
+[0326/233438.064:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.064:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.064:ERROR:exception_snapshot_win.cc(98)] thread ID 9752 not found in process
+[0326/233438.064:ERROR:exception_snapshot_win.cc(98)] thread ID 8388 not found in process
+[0326/233438.071:ERROR:process_reader_win.cc(123)] NtOpenThread: {Ingen tilgang.} En prosess har bedt om tilgang til et objekt, men slik tilgang er ikke innvilget. (0xc0000022)
+[0326/233438.071:ERROR:exception_snapshot_win.cc(98)] thread ID 4516 not found in process

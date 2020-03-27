@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import Editor, { monaco } from "@monaco-editor/react";
 import "./MonacoEditor.scss";
 
@@ -9,15 +9,15 @@ const toggleSidebar = () => {
 export default function MonacoEditor({
 	currentCode,
 	setCurrentCode,
-	setSaved
+	setSaved,
+	currentTitle,
+	projects
 }) {
 	const [ready, setReady] = useState(false);
 
 	const change = ref => {
 		const code = ref.current.getValue();
 		setCurrentCode(code);
-
-		setSaved(false);
 	};
 
 	const editorDidMount = (_, ref) => {
@@ -39,6 +39,15 @@ export default function MonacoEditor({
 			monacoBase: "./vs"
 		}
 	});
+
+	useEffect(() => {
+		setSaved(projects.get(currentTitle) === currentCode);
+
+		if (currentTitle === "") {
+			setSaved(true);
+		}
+	}, [currentCode]);
+
 	return (
 		<div className="monaco-editor">
 			<Editor

@@ -5,15 +5,17 @@ import Sidebar from "./components/Sidebar";
 import generateDefaultTitle from "./generateTitle";
 import "./App.scss";
 
+/* global chrome */
+
 function App() {
 	const savedProjectsArray = JSON.parse(
 		localStorage.getItem("projects") || "[]"
 	);
+	const [projects, setProjects] = useState(new Map(savedProjectsArray));
 
 	const [saved, setSaved] = useState(false);
 	const [currentTitle, setCurrentTitle] = useState("");
 	const [currentCode, setCurrentCode] = useState("");
-	const [projects, setProjects] = useState(new Map(savedProjectsArray));
 
 	const updateProjects = () => {
 		setProjects(projects);
@@ -25,6 +27,10 @@ function App() {
 	};
 
 	const save = () => {
+		if (currentTitle.length === 0) {
+			setCurrentTitle(generateDefaultTitle(projects));
+		}
+
 		projects.set(currentTitle, currentCode);
 		updateProjects();
 
@@ -33,18 +39,19 @@ function App() {
 		setSaved(true);
 	};
 
-	useEffect(() => {
-		console.log(saved);
-	}, [saved]);
-
-	const changeProject = name => {
+	const changeProject = (name, overrideConfirmation = false) => {
 		const changeProject = () => {
 			setCurrentTitle(name);
 			setCurrentCode(projects.get(name));
 			setSaved(true);
+
+			if (!name) {
+				setCurrentCode("");
+				setCurrentTitle("");
+			}
 		};
 
-		if (!saved) {
+		if (!saved && !overrideConfirmation) {
 			const doChange = window.confirm(
 				`Are you sure you want to close ${currentTitle}? You have unsaved changes!`
 			);
@@ -59,7 +66,7 @@ function App() {
 	const newProject = (override = false) => {
 		const create = () => {
 			const title = generateDefaultTitle(projects);
-			const code = 'alert("This is a new project!");';
+			const code = "";
 
 			setCurrentCode(code);
 			setCurrentTitle(title);
@@ -77,7 +84,15 @@ function App() {
 	};
 
 	const run = () => {
-		window.eval(currentCode);
+		chrome.tabs.query(
+			{
+				active: true,
+				currentWindow: true
+			},
+			([tab]) => {
+				chrome.tabs.sendMessage(tab.id, { run: currentCode });
+			}
+		);
 	};
 
 	const keyDown = event => {
@@ -86,8 +101,6 @@ function App() {
 			save();
 		}
 	};
-
-	useEffect(() => newProject(true), []);
 
 	const changeTitle = newTitle => {
 		if (saved) {
@@ -119,6 +132,7 @@ function App() {
 				<Navbar
 					currentTitle={currentTitle}
 					setCurrentTitle={changeTitle}
+					deleteProject={deleteProject}
 					run={run}
 					save={save}
 					saved={saved}
@@ -127,6 +141,8 @@ function App() {
 					currentCode={currentCode}
 					setCurrentCode={setCurrentCode}
 					setSaved={setSaved}
+					currentTitle={currentTitle}
+					projects={projects}
 				></MonacoEditor>
 			</div>
 		</div>
