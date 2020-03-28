@@ -10,3 +10,4 @@ Popup (react, src folder) communicates with contentScript.js (plain javascript, 
 
 - Got more familiar with React
 - Got more familiar with chrome extensions and contentscripts in particular (communication between popup and contentscripts)
+- Learned how to use Microsoft's monaco editor, particularily in react applications
