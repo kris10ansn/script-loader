@@ -6,6 +6,7 @@ import play from "../assets/play.svg";
 export default function Navbar({
 	currentTitle,
 	setCurrentTitle,
+	currentCode,
 	run,
 	save,
 	saved
@@ -39,6 +40,10 @@ export default function Navbar({
 		}
 	};
 
+	const runCode = () => {
+		run(currentCode);
+	};
+
 	return (
 		<nav ref={self}>
 			<div className="left">
@@ -64,7 +69,7 @@ export default function Navbar({
 					id="run"
 					src={play}
 					alt=">"
-					onClick={run}
+					onClick={runCode}
 					style={{ color: "green" }}
 				/>
 				<button onClick={save}>Save</button>

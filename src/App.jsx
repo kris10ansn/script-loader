@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MonacoEditor from "./components/MonacoEditor";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -13,9 +13,13 @@ function App() {
 	);
 	const [projects, setProjects] = useState(new Map(savedProjectsArray));
 
+	const projectTitles = Array.from(projects.keys());
+	const title = projectTitles[projectTitles.length - 1];
+	const code = projects.get(title);
+
 	const [saved, setSaved] = useState(false);
-	const [currentTitle, setCurrentTitle] = useState("");
-	const [currentCode, setCurrentCode] = useState("");
+	const [currentTitle, setCurrentTitle] = useState(title);
+	const [currentCode, setCurrentCode] = useState(code);
 
 	const updateProjects = () => {
 		setProjects(projects);
@@ -27,11 +31,13 @@ function App() {
 	};
 
 	const save = () => {
-		if (currentTitle.length === 0) {
-			setCurrentTitle(generateDefaultTitle(projects));
+		let title = currentTitle;
+		if (!currentTitle || currentTitle.trim().length === 0) {
+			title = generateDefaultTitle(projects);
+			setCurrentTitle(title);
 		}
 
-		projects.set(currentTitle, currentCode);
+		projects.set(title, currentCode);
 		updateProjects();
 
 		store();
@@ -83,22 +89,36 @@ function App() {
 		}
 	};
 
-	const run = () => {
-		chrome.tabs.query(
-			{
-				active: true,
-				currentWindow: true
-			},
-			([tab]) => {
-				chrome.tabs.sendMessage(tab.id, { run: currentCode });
-			}
-		);
+	const run = code => {
+		save();
+		if ("chrome" in window && "tabs" in window.chrome) {
+			chrome.tabs.query(
+				{
+					active: true,
+					currentWindow: true
+				},
+				([tab]) => {
+					chrome.tabs.sendMessage(tab.id, { run: code });
+					chrome.tabs.sendMessage(tab.id, {
+						run: `console.log("%cScript-Loader ran code!", "font-size:1.3rem;background:white;color:black;font-weight:bold;")`
+					});
+					window.close();
+				}
+			);
+		} else {
+			window.eval(code);
+		}
 	};
 
 	const keyDown = event => {
 		if (event.ctrlKey && event.key === "s") {
 			event.preventDefault();
 			save();
+		}
+
+		if (event.ctrlKey && event.key === "t") {
+			event.preventDefault();
+			changeProject("");
 		}
 	};
 
@@ -136,6 +156,7 @@ function App() {
 					run={run}
 					save={save}
 					saved={saved}
+					currentCode={currentCode}
 				></Navbar>
 				<MonacoEditor
 					currentCode={currentCode}

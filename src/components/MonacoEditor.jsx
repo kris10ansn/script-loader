@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, useEffect } from "react";
 import Editor, { monaco } from "@monaco-editor/react";
 import "./MonacoEditor.scss";
 
@@ -24,10 +24,6 @@ export default function MonacoEditor({
 		setReady(true);
 		ref.current = ref;
 
-		console.error(
-			"TODO: Prevent setSaved(false) on project change @ MonacoEditor.jsx"
-		);
-
 		change(ref);
 
 		ref.current.onDidChangeModelContent(() => change(ref));
@@ -46,7 +42,7 @@ export default function MonacoEditor({
 		if (currentTitle === "") {
 			setSaved(true);
 		}
-	}, [currentCode]);
+	}, [currentCode, currentTitle, projects, setSaved]);
 
 	return (
 		<div className="monaco-editor">

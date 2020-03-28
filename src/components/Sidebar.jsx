@@ -1,8 +1,9 @@
 import "./Sidebar.scss";
 import plus from "../assets/plus.svg";
+import run from "../assets/play.svg";
 import arrow from "../assets/white-arrow.svg";
 import trash from "../assets/delete.svg";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function Sidebar({
 	projects,
@@ -47,6 +48,13 @@ function Sidebar({
 		};
 	};
 
+	const projectRunner = name => {
+		return () => {
+			const code = projects.get(name);
+			run(code);
+		};
+	};
+
 	return (
 		<div className="Sidebar">
 			<div className="new-project" onClick={createProject}>
@@ -65,6 +73,12 @@ function Sidebar({
 							</h1>
 						</div>
 						<div className="buttons">
+							<img
+								src={run}
+								alt=">"
+								onClick={projectRunner(title)}
+								className="run"
+							/>
 							<img
 								src={trash}
 								alt="delete"
