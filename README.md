@@ -1,6 +1,6 @@
 # Script Loader chrome extension
 
-Save and run scripts on websites
+Popup chrome extension that allows one to save and run scripts on websites. Made with react.
 
 ## How it works
 
