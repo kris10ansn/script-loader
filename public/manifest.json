@@ -1,12 +1,14 @@
 {
 	"name": "Script Loader",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Popup chrome extension that allows one to save and run scripts on websites.",
 	"content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-3BgvBs9nJj8r1emVnXXD2Vz3Q/I/vSwD2KvWTORWLf8=' 'sha256-jUHtu82IhjkkarC+jnylFxDt98nwSPrzkTFY3wYpcLU=';",
 
 	"browser_action": {
 		"default_popup": "index.html"
 	},
+
+	"offline_enabled": true,
 
 	"icons": {
 		"16": "icon.png",
@@ -14,7 +16,7 @@
 		"128": "icon.png"
 	},
 
-	"permissions": ["tabs", "*://*/*"],
+	"permissions": ["activeTab"],
 
 	"content_scripts": [
 		{
