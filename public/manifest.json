@@ -8,6 +8,12 @@
 		"default_popup": "index.html"
 	},
 
+	"icons": {
+		"16": "icon.png",
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+
 	"permissions": ["tabs", "*://*/*"],
 
 	"content_scripts": [
