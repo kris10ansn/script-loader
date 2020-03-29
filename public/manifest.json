@@ -1,6 +1,6 @@
 {
 	"name": "Script Loader",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"description": "",
 	"content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-3BgvBs9nJj8r1emVnXXD2Vz3Q/I/vSwD2KvWTORWLf8=' 'sha256-jUHtu82IhjkkarC+jnylFxDt98nwSPrzkTFY3wYpcLU=';",
 
