@@ -27,8 +27,24 @@ function App() {
 
 	const store = () => {
 		const projectsArray = Array.from(projects.entries());
+
 		localStorage.setItem("projects", JSON.stringify(projectsArray));
+		chrome.storage.sync.set({ projects: projectsArray });
 	};
+
+	chrome.storage.sync.get(({ projects: values }) => {
+		if (!values) {
+			return;
+		}
+
+		for (const [key, value] of values) {
+			if (!projects.has(key)) {
+				projects.set(key, value);
+			}
+		}
+
+		store();
+	});
 
 	const save = () => {
 		let title = currentTitle;
@@ -45,8 +61,8 @@ function App() {
 		setSaved(true);
 	};
 
-	const changeProject = (name, overrideConfirmation = false) => {
-		const changeProject = () => {
+	const changeProject = name => {
+		const change = () => {
 			setCurrentTitle(name);
 			setCurrentCode(projects.get(name));
 			setSaved(true);
@@ -57,19 +73,19 @@ function App() {
 			}
 		};
 
-		if (!saved && !overrideConfirmation) {
+		if (!saved && Boolean(currentTitle)) {
 			const doChange = window.confirm(
 				`Are you sure you want to close ${currentTitle}? You have unsaved changes!`
 			);
 			if (doChange) {
-				changeProject();
+				change();
 			}
 		} else {
-			changeProject();
+			change();
 		}
 	};
 
-	const newProject = (override = false) => {
+	const newProject = () => {
 		const create = () => {
 			const title = generateDefaultTitle(projects);
 			const code = "";
@@ -79,7 +95,7 @@ function App() {
 			setSaved(false);
 		};
 
-		if (!override && !saved) {
+		if (!saved && Boolean(currentTitle)) {
 			const doCreate = window.confirm(
 				`Are you sure you want to close ${currentTitle}? You have unsaved changes!`
 			);
