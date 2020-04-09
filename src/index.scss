@@ -1,22 +1,22 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html,
 body {
-	background-color: #1d1d1d;
-	overflow: hidden;
-	font-family: "Sen", sans-serif;
+    background-color: #1d1d1d;
+    overflow: hidden;
+    font-family: "Sen", sans-serif;
 
-	--window-width: 800px;
-	--window-height: 600px;
+    --window-width: 800px;
+    --window-height: 600px;
 
-	width: var(--window-width);
-	height: var(--window-height);
+    width: var(--window-width);
+    height: var(--window-height);
 }
 
 button {
-	outline: none;
+    outline: none;
 }

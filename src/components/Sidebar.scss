@@ -1,121 +1,121 @@
 $expanded: 65vw;
 
 .Sidebar {
-	width: $expanded;
-	height: var(--window-height);
-	background: #222;
+    width: $expanded;
+    height: var(--window-height);
+    background: #222;
 
-	position: absolute;
-	left: var(--sidebar-left);
+    position: absolute;
+    left: var(--sidebar-left);
 
-	transition: all 0.3s ease;
-	color: white;
+    transition: all 0.3s ease;
+    color: white;
 
-	div.projects {
-		height: var(--window-height);
-		overflow-y: scroll;
+    div.projects {
+        height: var(--window-height);
+        overflow-y: scroll;
 
-		&::-webkit-scrollbar {
-			background: #111;
-			width: 10px;
-		}
-		&::-webkit-scrollbar-thumb {
-			background: #333;
-		}
-	}
+        &::-webkit-scrollbar {
+            background: #111;
+            width: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+    }
 
-	div.new-project,
-	div.project {
-		background: #222;
-		display: flex;
-		align-items: center;
-		height: 60px;
+    div.new-project,
+    div.project {
+        background: #222;
+        display: flex;
+        align-items: center;
+        height: 60px;
 
-		transition: background 0.2s ease;
+        transition: background 0.2s ease;
 
-		h1 {
-			font-size: 26px;
-			font-weight: bold;
-		}
+        h1 {
+            font-size: 26px;
+            font-weight: bold;
+        }
 
-		img {
-			margin: 0 20px;
-			height: 1.5rem;
-		}
+        img {
+            margin: 0 20px;
+            height: 1.5rem;
+        }
 
-		&:hover {
-			background: #444;
-		}
-	}
+        &:hover {
+            background: #444;
+        }
+    }
 
-	div.project {
-		display: flex;
-		justify-content: space-between;
+    div.project {
+        display: flex;
+        justify-content: space-between;
 
-		div.left {
-			display: flex;
-			align-items: center;
-			flex-grow: 1;
-			height: 100%;
-			cursor: pointer;
-		}
+        div.left {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            height: 100%;
+            cursor: pointer;
+        }
 
-		img.arrow {
-			height: 1rem;
-			margin: 0 24px;
-			transition: transform 0.3s ease;
-		}
+        img.arrow {
+            height: 1rem;
+            margin: 0 24px;
+            transition: transform 0.3s ease;
+        }
 
-		&:hover img.arrow {
-			transform: translateX(7px);
-		}
+        &:hover img.arrow {
+            transform: translateX(7px);
+        }
 
-		div.buttons {
-			display: flex;
-			align-items: center;
+        div.buttons {
+            display: flex;
+            align-items: center;
 
-			opacity: 0;
+            opacity: 0;
 
-			transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
 
-			transform: translateY(4px);
+            transform: translateY(4px);
 
-			img {
-				cursor: pointer;
-				margin: 0 15px;
-			}
+            img {
+                cursor: pointer;
+                margin: 0 15px;
+            }
 
-			img.delete {
-				height: 36px;
-			}
-		}
+            img.delete {
+                height: 36px;
+            }
+        }
 
-		&:hover div.buttons {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
+        &:hover div.buttons {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-	div.new-project {
-		cursor: pointer;
+    div.new-project {
+        cursor: pointer;
 
-		img {
-			transition: transform 0.5s ease;
-		}
+        img {
+            transition: transform 0.5s ease;
+        }
 
-		&:hover img {
-			transition: transform 0.6s ease;
-			transform: rotate(180deg);
-		}
-	}
+        &:hover img {
+            transition: transform 0.6s ease;
+            transform: rotate(180deg);
+        }
+    }
 }
 
 body {
-	--sidebar-width: 0;
-	--sidebar-left: -#{$expanded};
+    --sidebar-width: 0;
+    --sidebar-left: -#{$expanded};
 }
 
 body.sidebar-open {
-	--sidebar-width: #{$expanded};
-	--sidebar-left: 0;
+    --sidebar-width: #{$expanded};
+    --sidebar-left: 0;
 }

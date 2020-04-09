@@ -1,23 +1,23 @@
 .monaco-editor {
-	// Remove navbar height
-	height: calc(var(--window-height) - 60px);
-	width: 100%;
-	padding-top: 2px;
+    // Remove navbar height
+    height: calc(var(--window-height) - 60px);
+    width: 100%;
+    padding-top: 2px;
 }
 .overlay {
-	position: absolute;
-	width: var(--overlay-width);
-	height: var(--overlay-height);
+    position: absolute;
+    width: var(--overlay-width);
+    height: var(--overlay-height);
 
-	top: 0;
-	left: 0;
-	z-index: 1;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 body {
-	--overlay-width: 0;
-	--overlay-height: 0;
+    --overlay-width: 0;
+    --overlay-height: 0;
 }
 body.sidebar-open {
-	--overlay-width: var(--window-width);
-	--overlay-height: var(--window-height);
+    --overlay-width: var(--window-width);
+    --overlay-height: var(--window-height);
 }

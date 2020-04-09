@@ -1,16 +1,16 @@
 .App {
-	height: var(--window-height);
-	min-width: var(--window-width);
-	display: flex;
-	flex-direction: row;
-	overflow: hidden;
+    height: var(--window-height);
+    min-width: var(--window-width);
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
 
-	div.main {
-		height: var(--window-height);
-		width: var(--window-width);
-		position: absolute;
-		left: var(--sidebar-width);
+    div.main {
+        height: var(--window-height);
+        width: var(--window-width);
+        position: absolute;
+        left: var(--sidebar-width);
 
-		transition: left 0.3s ease;
-	}
+        transition: left 0.3s ease;
+    }
 }
