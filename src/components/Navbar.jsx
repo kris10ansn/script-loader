@@ -42,6 +42,7 @@ export default function Navbar({
 
     const runCode = () => {
         run(currentCode);
+        window.close();
     };
 
     return (

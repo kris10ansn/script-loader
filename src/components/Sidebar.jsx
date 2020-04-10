@@ -1,6 +1,6 @@
 import "./Sidebar.scss";
 import plus from "../assets/plus.svg";
-import run from "../assets/play.svg";
+import play from "../assets/play.svg";
 import arrow from "../assets/white-arrow.svg";
 import trash from "../assets/delete.svg";
 import React, { useState } from "react";
@@ -12,6 +12,7 @@ function Sidebar({
     deleteProject,
     updateProjects,
     currentTitle,
+    run
 }) {
     const [updateValue, setUpdateValue] = useState(false);
 
@@ -52,6 +53,7 @@ function Sidebar({
         return () => {
             const code = projects.get(name);
             run(code);
+            alert("Ran code!")
         };
     };
 
@@ -74,7 +76,7 @@ function Sidebar({
                         </div>
                         <div className="buttons">
                             <img
-                                src={run}
+                                src={play}
                                 alt=">"
                                 onClick={projectRunner(title)}
                                 className="run"

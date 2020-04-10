@@ -118,7 +118,6 @@ function App() {
                     chrome.tabs.sendMessage(tab.id, {
                         run: `console.log("%cScript-Loader ran code!", "font-size:1.3rem;background:white;color:black;font-weight:bold;")`,
                     });
-                    window.close();
                 }
             );
         } else {
@@ -163,6 +162,7 @@ function App() {
                 deleteProject={deleteProject}
                 updateProjects={updateProjects}
                 currentTitle={currentTitle}
+                run={run}
             ></Sidebar>
             <div className="main" onKeyDown={keyDown}>
                 <Navbar
